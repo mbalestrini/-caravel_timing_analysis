@@ -1,7 +1,15 @@
 # Caravel timing analysis test 
 
-### Environment variables needed
-`PDK_ROOT` 
+
+## Requirements
+
+The caravel repository is needed inside ./caravel folder
+
+You can get it by running `make get_caravel`
+
+The environment variable `PDK_ROOT` must be set to the pdk folder
+
+---
 
 ## run the default empty caravel with no user project inside 
 `make caravel_sta-empty`
