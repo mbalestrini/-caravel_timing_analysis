@@ -24,12 +24,18 @@ caravel_sta-%:
 
 	mkdir -p $(RESULTS_PATH)
 
-	docker run -it -v $(PROJECT_FILES):/project_files -v $(RESULTS_PATH):/results -v $(OPENLANE_ROOT):/openLANE_flow -v $(PDK_ROOT):$(PDK_ROOT) -v $(CARAVEL_ROOT):/caravel -e PDK_ROOT=$(PDK_ROOT) -u $(shell id -u $(USER)):$(shell id -g $(USER)) $(OPENLANE_IMAGE_NAME) \
+	docker run -it \
+		-v $(PROJECT_FILES):/project_files \
+		-v $(RESULTS_PATH):/results \
+		-v $(PDK_ROOT):$(PDK_ROOT) \
+		-v $(CARAVEL_ROOT):/caravel \
+		-e PDK_ROOT=$(PDK_ROOT) \
+		-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
+		$(OPENLANE_IMAGE_NAME) \
 	sh -c " cd /caravel; sta $(EXIT) /project_files/caravel_timing-$*.tcl |& tee /results/sta_$*_$(shell date +%y%m%d_%H%M%S).log" 
 
 
 get_caravel:
 	git clone https://github.com/efabless/caravel
-	cd caravel
+	cd caravel; \
 	make install_mcw
-	
