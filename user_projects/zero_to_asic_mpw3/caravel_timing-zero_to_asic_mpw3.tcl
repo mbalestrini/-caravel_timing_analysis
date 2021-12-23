@@ -165,3 +165,5 @@ report_checks -path_delay min -fields {slew cap input nets fanout} -format full_
 report_checks -path_delay max -fields {slew cap input nets fanout} -format full_clock_expanded -group_count 2 -through mprj/wrapped_wishbone_demo_13
 
 write_sdf $RESULTS_PATH/caravel.sdf;
+
+check_setup -verbose > $RESULTS_PATH/check_setup_detail.rpt;

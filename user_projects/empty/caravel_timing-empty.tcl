@@ -150,3 +150,5 @@ report_worst_slack -min ;
 report_checks -path_delay min -fields {slew cap input nets fanout} -format full_clock_expanded -slack_max 0.18 -group_count 10;
 
 write_sdf $RESULTS_PATH/caravel.sdf;
+
+check_setup -verbose > $RESULTS_PATH/check_setup_detail.rpt;
