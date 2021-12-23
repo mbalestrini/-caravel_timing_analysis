@@ -17,7 +17,7 @@ The environment variable `PDK_ROOT` must be set to the pdk folder
 ## run some custom user project
 `make caravel_sta-[NAME_OF_PROJECT_FOLDER]`
 
-## use `no_exit` to run the process and stay in `sta` to be able to interactively run more commands
+#### use `no_exit=1` to run the process and stay in `sta` to be able to interactively run more commands
 `make caravel_sta-[NAME_OF_PROJECT_FOLDER] no_exit=1`
 
 ## create a new user project
