@@ -172,13 +172,15 @@ report_checks -path_delay min -fields {slew cap input nets fanout} -format full_
 
 
 
-report_checks -path_delay min -fields {slew cap input nets fanout} -format full_clock_expanded -group_count 1000 -slack_max 0.1 > /results/sta_min_full_report.txt;
-report_checks -path_delay max -fields {slew cap input nets fanout} -format full_clock_expanded -group_count 1000 -slack_max 0.1 > /results/sta_max_full_report.txt;
+report_checks -path_delay min -fields {slew cap input nets fanout} -format full_clock_expanded -group_count 1000 -slack_max 0.1 > $RESULTS_PATH/sta_min_full_report.txt;
+report_checks -path_delay max -fields {slew cap input nets fanout} -format full_clock_expanded -group_count 1000 -slack_max 0.1 > $RESULTS_PATH/sta_max_full_report.txt;
 
-report_checks -path_delay min -format summary -group_count 1000 -slack_max 0.1 > /results/sta_min_full_summary_report.txt;
-report_checks -path_delay max -format summary -group_count 1000 -slack_max 0.1 > /results/sta_max_full_summary_report.txt;
+report_checks -path_delay min -format summary -group_count 1000 -slack_max 0.1 > $RESULTS_PATH/sta_min_full_summary_report.txt;
+report_checks -path_delay max -format summary -group_count 1000 -slack_max 0.1 > $RESULTS_PATH/sta_max_full_summary_report.txt;
 
+write_sdf $RESULTS_PATH/caravel.sdf;
 
+check_setup -verbose > $RESULTS_PATH/check_setup_detail.rpt;
 
 # foreach pe  [find_timing_path -path_delay min -group_count 50 -slack_max 0] {
 # 	set last_instance ""
