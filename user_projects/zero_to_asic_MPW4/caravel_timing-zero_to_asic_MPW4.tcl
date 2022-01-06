@@ -172,6 +172,29 @@ report_checks -path_delay min -fields {slew cap input nets fanout} -format full_
 
 
 
+report_checks -path_delay min -fields {slew cap input nets fanout} -format full_clock_expanded -group_count 1000 -slack_max 0.1 > /results/sta_min_full_report.txt;
+report_checks -path_delay max -fields {slew cap input nets fanout} -format full_clock_expanded -group_count 1000 -slack_max 0.1 > /results/sta_max_full_report.txt;
+
+report_checks -path_delay min -format summary -group_count 1000 -slack_max 0.1 > /results/sta_min_full_summary_report.txt;
+report_checks -path_delay max -format summary -group_count 1000 -slack_max 0.1 > /results/sta_max_full_summary_report.txt;
+
+
+
+# foreach pe  [find_timing_path -path_delay min -group_count 50 -slack_max 0] {
+# 	set last_instance ""
+# 	puts "[get_full_name [[$pe path] pin]]";
+# 	puts "tag: [[$pe path] tag]"
+# 	foreach pin [[$pe path] pins ] {
+# 	set pstr [get_full_name $pin]
+# 	set result [regexp {mprj/[^\/]+} $pstr instance]
+# 		if {$last_instance!=$instance} {
+# 			puts "\t$instance"
+# 			set last_instance $instance
+# 		}
+# 	}
+# 	puts ""
+# }
+
 
 # report_checks -path_delay min -format summary -group_count 1000 -slack_max 0.1;
 
