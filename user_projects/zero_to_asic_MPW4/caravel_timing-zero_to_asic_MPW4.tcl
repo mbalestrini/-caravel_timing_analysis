@@ -60,6 +60,10 @@ read_verilog /project_files/verilog/wrapped_hack_soc_dffram.lvs.powered.v
 read_verilog /project_files/verilog/wb_openram_wrapper.lvs.powered.v
 read_verilog /project_files/verilog/wb_bridge_2way.lvs.powered.v
 
+read_verilog /project_files/verilog/wrapped_bin_mult.lvs.powered.v
+read_verilog /project_files/verilog/wrapped_keyvalue.lvs.powered.v
+read_verilog /project_files/verilog/wrapped_asic_watch.lvs.powered.v
+
 
 link_design caravel;
 
@@ -181,6 +185,27 @@ report_checks -path_delay max -format summary -group_count 1000 -slack_max 0.1 >
 write_sdf $RESULTS_PATH/caravel.sdf;
 
 check_setup -verbose > $RESULTS_PATH/check_setup_detail.rpt;
+
+
+
+
+
+
+
+proc turn_off_projects {} {
+    set_case_analysis 0 [get_pins mprj/wrapped_function_generator_0/active]
+    set_case_analysis 0 [get_pins mprj/wrapped_spell_1/active]
+    set_case_analysis 0 [get_pins mprj/wrapped_ppm_coder_2/active]
+    set_case_analysis 0 [get_pins mprj/wrapped_ppm_decoder_3/active]
+    set_case_analysis 0 [get_pins mprj/wrapped_silife_4/active]
+    set_case_analysis 0 [get_pins mprj/wrapped_skullfet_5/active]
+    set_case_analysis 0 [get_pins mprj/wrapped_spraid_6/active]
+    set_case_analysis 0 [get_pins mprj/wrapped_bin_mult_7/active]
+    set_case_analysis 0 [get_pins mprj/wrapped_asic_watch_8/active]
+    set_case_analysis 0 [get_pins mprj/wrapped_hack_soc_dffram_9/active]
+    set_case_analysis 0 [get_pins mprj/wrapped_keyvalue_12/active]
+}
+
 
 # foreach pe  [find_timing_path -path_delay min -group_count 50 -slack_max 0] {
 # 	set last_instance ""
